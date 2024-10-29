@@ -3,6 +3,7 @@ package com.example.firstproject.api;
 import com.example.firstproject.dto.CoffeeDto;
 import com.example.firstproject.entity.Coffee;
 import com.example.firstproject.repository.CoffeeRepository;
+import com.example.firstproject.service.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,34 +15,34 @@ import java.util.List;
 public class CoffeeApiController {
 
     @Autowired
-    CoffeeRepository coffeeRepository;
+    CoffeeService coffeeService;
 
     //index, show
     @GetMapping("/api/coffees")
     public List<Coffee> index(){
-        return coffeeRepository.findAll();
+        return coffeeService.index();
     }
 
     @GetMapping("/api/coffee/{id}")
     public Coffee show(@PathVariable Long id){
-        return coffeeRepository.findById(id).orElse(null);
+        return coffeeService.show(id);
     }
 
-    @PatchMapping("/api/coffee/{id}")
+    @PostMapping("/api/coffee/{id}")
     public ResponseEntity<Coffee> update(@PathVariable Long id, @RequestBody CoffeeDto dto){
-        Coffee coffee = dto.toEntitiy();
-        Coffee target = coffeeRepository.findById(id).orElse(null);
+        Coffee updated = coffeeService.update(id, dto);
 
-        target.patch(coffee);
-        Coffee updated = coffeeRepository.save(target);
-        return ResponseEntity.status(HttpStatus.OK).body(updated);
+        return (updated != null)?
+            ResponseEntity.status(HttpStatus.OK).body(updated):
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     @DeleteMapping("/api/coffee/{id}")
     public ResponseEntity<Coffee> delete(@PathVariable Long id){
-        Coffee coffee = coffeeRepository.findById(id).orElse(null);
-        coffeeRepository.delete(coffee);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        Coffee deleted = coffeeService.delete(id);
+        return (deleted != null)?
+                ResponseEntity.status(HttpStatus.OK).body(deleted):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 }

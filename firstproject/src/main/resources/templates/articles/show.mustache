@@ -1,0 +1,29 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">email</th>
+        <th scope="col">password</th>
+        <th scope="col">is_checked</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {{#article}}
+    <tr>
+    <th>{{id}}    </th>
+    <td>{{email}}    </td>
+    <td>{{password}}    </td>
+    <td>{{is_checked}}</td>
+    {{/article}}
+    </tr>
+    </tbody>
+</table>
+
+<a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit  </a>
+<a href="/articles/{{article.id}}/delete" class="btn btn-primary">Delete  </a>
+<a href="/articles"> Go to Article List </a>
+{{>layouts/footer}}

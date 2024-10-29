@@ -1,0 +1,28 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">email</th>
+        <th scope="col">password</th>
+        <th scope="col">is_checked</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {{#articleList}}
+        <tr>
+            <th>{{id}}    </th>
+            <td><a href="/articles/{{id}}">{{email}}    </a></td>
+            <td>{{password}}    </td>
+            <td>{{is_checked}}</td>
+    {{/articleList}}
+    </tr>
+    </tbody>
+</table>
+
+<a href="/articles/new"> New Article </a>
+
+{{>layouts/footer}}

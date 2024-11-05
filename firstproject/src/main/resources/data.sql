@@ -22,3 +22,10 @@ Insert INTO member(ID, email, password) VALUES(101, 'ske04186@gmail.com', 1234);
 Insert INTO coffee(name, price) VALUES('아메리카노', 4500);
 Insert INTO coffee(name, price) VALUES('라떼', 4500);
 Insert INTO coffee(name, price) VALUES('카페 모카', 4500);
+
+Insert INTO pizza(name, price) VALUES('페퍼로니 피자', 25900);
+Insert INTO pizza(name, price) VALUES('불고기 피자', 29900);
+Insert INTO pizza(name, price) VALUES('고구마 피자', 30900);
+Insert INTO pizza(name, price) VALUES('포테이토 피자', 27900);
+Insert INTO pizza(name, price) VALUES('치즈 피자', 23900);
+
